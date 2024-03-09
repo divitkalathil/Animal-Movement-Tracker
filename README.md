@@ -94,6 +94,9 @@ Docker and Docker Compose.
     ```bash
     docker-compose exec db psql -U divitkalathil -d test_db
     ```
+    Create the tables using the below schema:
+    
+    https://github.com/divitkalathil/Machado-Labs-Assignment/blob/master/sql/schema.sql
 
 4. Interact with the Python application, Express.js server, and React application as per their functionalities.
 
