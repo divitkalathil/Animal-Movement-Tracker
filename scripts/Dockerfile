@@ -2,7 +2,7 @@
 FROM python:3.8
 
 # Set the working directory in the container
-WORKDIR /Users/divitkalathil/Desktop/programming-challenge
+WORKDIR /app
 
 # Copy the scripts directory into the container
 COPY scripts/ scripts/
