@@ -1,6 +1,6 @@
 # Programming challenge
 
-Brief description of the project.
+In food animal systems, animals move to different farms as they age. Each farm has a unique ID and must keep a record of the movement of animals from one farm to another. Here, we present some fictitious records of movements among pig farms.
 
 ## Table of Contents
 
@@ -14,7 +14,6 @@ Brief description of the project.
 
 ## Description
 
-In food animal systems, animals move to different farms as they age. Each farm has a unique ID and must keep a record of the movement of animals from one farm to another. Here, we present some fictitious records of movements among pig farms.
 
 ## Mandatory
  #### Task needs to run with "docker compose up"
@@ -97,6 +96,13 @@ Docker and Docker Compose.
     ```
 
 4. Interact with the Python application, Express.js server, and React application as per their functionalities.
+
+## Backend Server
+Navigate to `http://localhost:3002` on Postman API to check if the data is being fetched using Express scripts
+
+## React Application:
+Navigate to `http://localhost:3000` to run the web platform.
+
 
 ## Stopping the Application
 
