@@ -9,9 +9,9 @@ const port = 3002;
 // Create a PostgreSQL client
 const pool = new Pool({
     user: 'divitkalathil',
-    host: 'localhost',
-    database: 'TestDB',
-    password: 'your_database_password',
+    host: 'db',
+    database: 'test_db',
+    password: 'root',
     port: 5432,
 });
 

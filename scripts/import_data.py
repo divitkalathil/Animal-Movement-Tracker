@@ -8,7 +8,7 @@ def connect_to_database():
             dbname="test_db",
             user="divitkalathil",
             password="root",
-            host="localhost",
+            host="db",
             port="5432"
         )
         return conn
@@ -21,7 +21,7 @@ def connect_to_database():
 def import_movements_data(conn):
     try:
         cursor = conn.cursor()
-        with open('../data/movement.csv', 'r') as file:  # Corrected file path
+        with open('data/movement.csv', 'r') as file:  # Corrected file path
             reader = csv.DictReader(file)
             for row in reader:
                 cursor.execute("""
@@ -45,7 +45,7 @@ def import_movements_data(conn):
 def import_farms_data(conn):
     try:
         cursor = conn.cursor()
-        with open('../data/population.csv', 'r') as file:  # Corrected file path
+        with open('data/population.csv', 'r') as file:  # Corrected file path
             reader = csv.DictReader(file)
             for row in reader:
                 cursor.execute("""
@@ -61,13 +61,24 @@ def import_farms_data(conn):
         conn.rollback()
         print("Error importing data into Farms table:", e)
 
+def truncate_farms_table(conn):
+    cursor = conn.cursor()
+    cursor.execute("TRUNCATE TABLE Farms;")
+    conn.commit()
+
+def truncate_movements_table(conn):
+    cursor = conn.cursor()
+    cursor.execute("TRUNCATE TABLE Movements;")
+    conn.commit()
+
 if __name__ == "__main__":
     # Connect to the database
     connection = connect_to_database()
     if connection:
+
         # Import data into Farms table
         import_farms_data(connection)
         # Import data into Movements table
         import_movements_data(connection)
-        # Close database connection
+        # Close database connection        
         connection.close()

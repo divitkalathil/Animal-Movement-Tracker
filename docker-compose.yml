@@ -1,4 +1,8 @@
 version: "3.8"
+networks:
+  app-network:
+    driver: bridge
+
 services:
   db:
     container_name: postgres_container
@@ -8,6 +12,9 @@ services:
       POSTGRES_USER: divitkalathil
       POSTGRES_PASSWORD: root
       POSTGRES_DB: test_db
+    networks:
+      - app-network
+    
     ports:
       - "5432:5432"
   pgadmin:
@@ -21,9 +28,38 @@ services:
       - "5050:80"
   python_app:
     build:
-      context: .
-      dockerfile: /Users/divitkalathil/Desktop/programming-challenge/scripts/Dockerfile
+      context: /Users/divitkalathil/Desktop/programming-challenge
+      dockerfile: ./scripts/Dockerfile
     restart: always
+    networks:
+      - app-network
+
     depends_on:
       - db
       - pgadmin
+
+  express_app:
+    build:
+      context: ./src/backend/  # Path to the directory where your server.js file is located
+    restart: always
+    ports:
+      - "3002:3002"  # Expose the port on which your Express app is running
+    networks:
+      - app-network
+    depends_on:
+      - db
+      - pgadmin
+
+  react_app:
+    build:
+      context: ./src/frontend/amplify-ui-dashboard/  # Path to the root directory of your React app
+    restart: always
+    ports:
+      - "3000:3000"  # Expose the port on which your React app runs
+    networks:
+      - app-network
+    depends_on:
+      - db
+      - pgadmin
+      - express_app
+

@@ -2,10 +2,12 @@
 FROM python:3.8
 
 # Set the working directory in the container
-WORKDIR /app
+WORKDIR /Users/divitkalathil/Desktop/programming-challenge
 
-# Copy the current directory contents into the container at /app
-COPY . /app
+# Copy the scripts directory into the container
+COPY scripts/ scripts/
+COPY data/ data/
+
 
 # Install any needed dependencies specified in requirements.txt
 RUN pip install --no-cache-dir psycopg2
